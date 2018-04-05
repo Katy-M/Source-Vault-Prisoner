@@ -35,6 +35,7 @@ using System.Diagnostics;
  03/25/18 - All game states implemented
  03/30/18 - Implemented grid backround setup and placeholder background images.
  03/31/18 - Changed health color from red to blue. Included player, arrow, and cyan tile graphics.
+ 04/04/18 - Began creating grids. Modified some tile graphics
 
         NEXT STEPS: CREATE BACKGROUND AND REMAINING TILE ART
                     PLAYTEST AND IMPLEMENT AUDIO/SOUND EFFECTS
