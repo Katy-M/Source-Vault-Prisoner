@@ -37,6 +37,7 @@ using System.Diagnostics;
  03/31/18 - Changed health color from red to blue. Included player, arrow, and cyan tile graphics.
  04/04/18 - Began creating grids. Modified some tile graphics
  04/24/18 - Created second grid and modified player tile graphic
+          - Created third grid
 
         NEXT STEPS: CREATE BACKGROUND AND REMAINING TILE ART
                     PLAYTEST AND IMPLEMENT AUDIO/SOUND EFFECTS
@@ -305,7 +306,7 @@ namespace Vault_Prisoner
             }
 
             //If the instructions are on and the player presses backspace, exit the instructions
-            if(instructOn && kStateCurr.IsKeyDown(Keys.Back) 
+            if (instructOn && kStateCurr.IsKeyDown(Keys.Back) 
                 && kStatePrev.IsKeyDown(Keys.Back) == false)
             {
                 instructOn = false;
@@ -320,7 +321,7 @@ namespace Vault_Prisoner
             if (gameState)
             {
                 //The player moves to the previous grid if pressing space on an entry tile
-                if(player.PlayerTile.isEntry)
+                if (player.PlayerTile.isEntry)
                 {
                     if (kStateCurr.IsKeyDown(Keys.Space)
                         && kStatePrev.IsKeyDown(Keys.Space) == false)
