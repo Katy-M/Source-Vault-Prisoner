@@ -38,9 +38,10 @@ using System.Diagnostics;
  04/04/18 - Began creating grids. Modified some tile graphics
  04/24/18 - Created second grid and modified player tile graphic
           - Created third grid
+ 04/25/18 - Created fourth grid
 
         NEXT STEPS: CREATE BACKGROUND AND REMAINING TILE ART
-                    PLAYTEST AND IMPLEMENT AUDIO/SOUND EFFECTS
+                    IMPLEMENT AUDIO/SOUND EFFECTS
  */
 
 namespace Vault_Prisoner
