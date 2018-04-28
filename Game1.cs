@@ -39,6 +39,7 @@ using System.Diagnostics;
  04/24/18 - Created second grid and modified player tile graphic
           - Created third grid
  04/25/18 - Created fourth grid
+ 04/28/18 - Added features to first grid and fixed a bug causing the grid textures to not reset when the user plays the game right after winning/losing
 
         NEXT STEPS: CREATE BACKGROUND AND REMAINING TILE ART
                     IMPLEMENT AUDIO/SOUND EFFECTS
@@ -135,6 +136,7 @@ namespace Vault_Prisoner
         private List<Tile> nearbyTiles;
 
         //Stores an ordered list of grid background images
+        List<Texture2D> maps;
         List<Texture2D> gridTextureMaps;
         Rectangle gridSpace = new Rectangle(342, 0, 1024, 768);
 
@@ -229,7 +231,7 @@ namespace Vault_Prisoner
             buttonTexture = this.Content.Load<Texture2D>("button.png");
 
             //Load the grid background textures
-            List<Texture2D> maps = new List<Texture2D>();
+            maps = new List<Texture2D>();
 
             maps.Add(this.Content.Load<Texture2D>("grid1.png"));
             maps.Add(this.Content.Load<Texture2D>("grid2.png"));
@@ -553,6 +555,9 @@ namespace Vault_Prisoner
                     player = new Player(playerTileImg, grid.Tiles[relativePlayerPos]);
                     exploreUses = MAX_EXPLORE;
 
+                    gridTextureMaps = new List<Texture2D>();
+                    gridTextureMaps = GridTextures.SetupGridMaps(maps, GRID_MAX_COUNT, rng);
+
                     timer.Reset();
                     timer.Start();
                     gameState = true;
@@ -588,6 +593,9 @@ namespace Vault_Prisoner
                     relativePlayerPos = playerStartIndex[rng.Next(0, playerStartIndex.Length)];
                     player = new Player(playerTileImg, grid.Tiles[relativePlayerPos]);
                     exploreUses = MAX_EXPLORE;
+
+                    gridTextureMaps = new List<Texture2D>();
+                    gridTextureMaps = GridTextures.SetupGridMaps(maps, GRID_MAX_COUNT, rng);
 
                     timer.Reset();
                     timer.Start();
