@@ -1,5 +1,5 @@
 # Source-Vault-Prisoner
-The source for my top-down tile based game, Vault Prisoner (excludes content folder). This project is about 95% complete (one more grid texture is yet to be created and added).
+The source for my top-down tile based game, Vault Prisoner (excludes content folder). This project is about 95% complete (one grid texture and tile texture are yet to be created and added to content - code is complete).
 ## Key Classes and Brief Descriptions
 ### Game1.cs
 The entry point for the application. Loads all content and graphics from the content folder (not included in this repo) and contains the update and main drawing loop. Creates the grids and keeps track of the different states of the game.
