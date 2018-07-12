@@ -40,9 +40,9 @@ using System.Diagnostics;
           - Created third grid
  04/25/18 - Created fourth grid
  04/28/18 - Added features to first grid and fixed a bug causing the grid textures to not reset when the user plays the game right after winning/losing
+ 07/12/18 - Created final grid
 
-        NEXT STEPS: CREATE BACKGROUND AND REMAINING TILE ART
-                    IMPLEMENT AUDIO/SOUND EFFECTS
+        NEXT STEPS: CREATE EXIT DOOR TILE AND CREDITS
  */
 
 namespace Vault_Prisoner
@@ -543,24 +543,7 @@ namespace Vault_Prisoner
                 if (over.Buttons[0].isClicked) //Play again
                 {
                     overState = false;
-
-                    //Reset values
-                    allMaps = new Grid[GRID_MAX_COUNT];
-                    framesPassed = 0;
-                    SetupGameGrids();
-                    gridNum = 0;
-                    grid = allMaps[gridNum];
-
-                    relativePlayerPos = playerStartIndex[rng.Next(0, playerStartIndex.Length)];
-                    player = new Player(playerTileImg, grid.Tiles[relativePlayerPos]);
-                    exploreUses = MAX_EXPLORE;
-
-                    gridTextureMaps = new List<Texture2D>();
-                    gridTextureMaps = GridTextures.SetupGridMaps(maps, GRID_MAX_COUNT, rng);
-
-                    timer.Reset();
-                    timer.Start();
-                    gameState = true;
+                    ResetGame();
                 }
                 else if (over.Buttons[1].isClicked) //Quit game
                 {
@@ -582,24 +565,7 @@ namespace Vault_Prisoner
                 if (win.Buttons[0].isClicked) //Play again
                 {
                     winState = false;
-
-                    //Reset values
-                    allMaps = new Grid[GRID_MAX_COUNT];
-                    framesPassed = 0;
-                    SetupGameGrids();
-                    gridNum = 0;
-                    grid = allMaps[gridNum];
-
-                    relativePlayerPos = playerStartIndex[rng.Next(0, playerStartIndex.Length)];
-                    player = new Player(playerTileImg, grid.Tiles[relativePlayerPos]);
-                    exploreUses = MAX_EXPLORE;
-
-                    gridTextureMaps = new List<Texture2D>();
-                    gridTextureMaps = GridTextures.SetupGridMaps(maps, GRID_MAX_COUNT, rng);
-
-                    timer.Reset();
-                    timer.Start();
-                    gameState = true;
+                    ResetGame();
                 }
                 else if (win.Buttons[1].isClicked) //Quit game
                 {
@@ -906,6 +872,27 @@ namespace Vault_Prisoner
                 return minutes + ".0" + seconds;
             else
                 return minutes + "." + seconds;
+        }
+
+        //Resets the game so the user can play again
+        private void ResetGame()
+        {
+            allMaps = new Grid[GRID_MAX_COUNT];
+            framesPassed = 0;
+            SetupGameGrids();
+            gridNum = 0;
+            grid = allMaps[gridNum];
+
+            relativePlayerPos = playerStartIndex[rng.Next(0, playerStartIndex.Length)];
+            player = new Player(playerTileImg, grid.Tiles[relativePlayerPos]);
+            exploreUses = MAX_EXPLORE;
+
+            gridTextureMaps = new List<Texture2D>();
+            gridTextureMaps = GridTextures.SetupGridMaps(maps, GRID_MAX_COUNT, rng);
+
+            timer.Reset();
+            timer.Start();
+            gameState = true;
         }
         #endregion
         //---------------------------------------------------------------------------------------------------------------
