@@ -41,6 +41,7 @@ using System.Diagnostics;
  04/25/18 - Created fourth grid
  04/28/18 - Added features to first grid and fixed a bug causing the grid textures to not reset when the user plays the game right after winning/losing
  07/12/18 - Created final grid
+ 07/20/18 - Added credits menu and conditions for its display
 
         NEXT STEPS: CREATE EXIT DOOR TILE AND CREDITS
  */
@@ -105,9 +106,11 @@ namespace Vault_Prisoner
         private Texture2D mainMenuImg;
         private Texture2D overMenuImg;
         private Texture2D winMenuImg;
+        private Texture2D creditsMenu;
 
         private Texture2D instructMenuImg;
         private bool instructOn;
+        private bool creditsOn;
 
         private KeyboardState kStatePrev;
 
@@ -166,6 +169,7 @@ namespace Vault_Prisoner
         {
             // TODO: Add your initialization logic here
             instructOn = false;
+            creditsOn = false;
 
             rng = new Random();
             kStatePrev = Keyboard.GetState();
@@ -218,6 +222,7 @@ namespace Vault_Prisoner
             instructMenuImg = this.Content.Load<Texture2D>("InstructionsMenu.png");
             overMenuImg = this.Content.Load<Texture2D>("GameOverMenu.png");
             winMenuImg = this.Content.Load<Texture2D>("winMenu.png");
+            creditsMenu = this.Content.Load<Texture2D>("credits.png");
 
             monsterMenuImg = this.Content.Load<Texture2D>("attackMenu.png");
             healthMenuImg = this.Content.Load<Texture2D>("healthMenu.png");
@@ -308,9 +313,9 @@ namespace Vault_Prisoner
                 overState = true;
             }
 
-            //If the instructions are on and the player presses backspace, exit the instructions
-            if (instructOn && kStateCurr.IsKeyDown(Keys.Back) 
-                && kStatePrev.IsKeyDown(Keys.Back) == false)
+            //If the instructions are on and the player presses esc, exit the instructions
+            if (instructOn && kStateCurr.IsKeyDown(Keys.Escape) 
+                && kStatePrev.IsKeyDown(Keys.Escape) == false)
             {
                 instructOn = false;
                 if (timer.IsRunning == false 
@@ -319,8 +324,20 @@ namespace Vault_Prisoner
                     timer.Start();
                 }
             }
-        //--------------------------------------------- GAMESTATE ------------------------------------------------
-        #region GameState
+
+            //If the credits are on and the player presses esc, exit
+            if (creditsOn && kStateCurr.IsKeyDown(Keys.Escape)
+                && kStatePrev.IsKeyDown(Keys.Escape) == false)
+            {
+                creditsOn = false;
+                if (timer.IsRunning == false
+                    && (gameState || situationState))
+                {
+                    timer.Start();
+                }
+            }
+            //--------------------------------------------- GAMESTATE ------------------------------------------------
+            #region GameState
             if (gameState)
             {
                 //The player moves to the previous grid if pressing space on an entry tile
@@ -415,7 +432,7 @@ namespace Vault_Prisoner
                 }
                 else if (main.Buttons[2].isClicked) //Credits
                 {
-
+                    creditsOn = true;
                 }
                 else if (main.Buttons[3].isClicked) //Quit
                 {
@@ -611,6 +628,11 @@ namespace Vault_Prisoner
             {
                 spriteBatch.Draw(instructMenuImg, new Rectangle(0, 0, 1366, 768), Color.White);
                 if(timer.IsRunning) timer.Stop();
+            }
+            if (creditsOn)
+            {
+                spriteBatch.Draw(creditsMenu, new Rectangle(0, 0, 1366, 768), Color.White);
+                if (timer.IsRunning) timer.Stop();
             }
 
             //----  END SPRITEBATCH-----------------------------------------------
