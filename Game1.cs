@@ -42,8 +42,7 @@ using System.Diagnostics;
  04/28/18 - Added features to first grid and fixed a bug causing the grid textures to not reset when the user plays the game right after winning/losing
  07/12/18 - Created final grid
  07/20/18 - Added credits menu and conditions for its display
-
-        NEXT STEPS: CREATE EXIT DOOR TILE AND CREDITS
+          - Added door tile image
  */
 
 namespace Vault_Prisoner
@@ -93,6 +92,7 @@ namespace Vault_Prisoner
         private Texture2D mishapImg;
         private Texture2D trappedImg;
         private Texture2D keyImg;
+        private Texture2D doorImg;
 
         //Menu images
         private Texture2D healthMenuImg;
@@ -213,6 +213,7 @@ namespace Vault_Prisoner
             mishapImg = this.Content.Load<Texture2D>("mishap.png");
             trappedImg = this.Content.Load<Texture2D>("trapped.png");
             keyImg = this.Content.Load<Texture2D>("key.png");
+            doorImg = this.Content.Load<Texture2D>("door.png");
 
             titleFont = this.Content.Load<SpriteFont>("mainFont");
             bodyFont = this.Content.Load<SpriteFont>("bodyFont");
@@ -445,7 +446,7 @@ namespace Vault_Prisoner
             if (gameState || situationState)
             {
                 spriteBatch.Draw(gridTextureMaps[gridNum], gridSpace, Color.White);
-                grid.DrawTiles(tileImg, keyImg, tileImgCyan, arrowTileImg, spriteBatch);
+                grid.DrawTiles(tileImg, keyImg, tileImgCyan, arrowTileImg, doorImg, spriteBatch);
                 player.Draw(spriteBatch, Color.White);
             }
 

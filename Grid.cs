@@ -127,7 +127,7 @@ namespace Vault_Prisoner
         /// Draws the tiles in this grid to the application
         /// </summary>
         public void DrawTiles(Texture2D tileImg, Texture2D keyImage, 
-            Texture2D tileImgCyan, Texture2D arrowTileImg, SpriteBatch sb)
+            Texture2D tileImgCyan, Texture2D arrowTileImg, Texture2D doorImg, SpriteBatch sb)
         {
             for (int i = 0; i < tiles.Length; i++)
             {
@@ -142,7 +142,7 @@ namespace Vault_Prisoner
                 }
                 else if (tiles[i].isDoor)
                 {
-                    sb.Draw(tileImg, tiles[i].TileDims, Color.MediumPurple);
+                    sb.Draw(doorImg, tiles[i].TileDims, Color.White);
                 }
                 else if (tiles[i].hasData == true)
                 {
