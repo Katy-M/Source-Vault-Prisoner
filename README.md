@@ -14,3 +14,10 @@ Sets up the menus in the game
 Represents and holds data for a tile on the grid that the player can navigate
 ### Grid.cs
 Sets up a grid of tiles in the game
+
+## Credits
+Designed and created by Katy Mollenkopf
+Textures on graphics obtained and modifed using images from https://www.textures.com/
+Fonts - “Edo” under Vic Fieger License
+			- “Exo” under SIL Open Font License
+(Textures and font files not included in this repo)
